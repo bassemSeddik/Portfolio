@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             animate();
             
             // Load the  model
-             const loader = new THREE.GLTFLoader();
+            const loader = new THREE.GLTFLoader();
             loader.load('./Flamingo.glb', (gltf) => {
                         const model = gltf.scene;
                         scene.add(model);
