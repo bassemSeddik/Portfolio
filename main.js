@@ -28,11 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
             animate();
             
             // Load the  model
+             const loader = new THREE.GLTFLoader();
             loader.load('./Flamingo.glb', (gltf) => {
-                        const model2 = gltf.scene;
-                        scene.add(model2);
+                        const model = gltf.scene;
+                        scene.add(model);
                         // Access animations
-                        const mixer2 = new THREE.AnimationMixer(model2);
+                        const mixer2 = new THREE.AnimationMixer(model);
                         const action2 = mixer2.clipAction(gltf.animations[0]); // Assuming the first animation
                         action2.play(); // Start animation
                         animate();
