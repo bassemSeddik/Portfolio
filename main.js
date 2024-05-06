@@ -23,6 +23,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 cube.rotation.x += 0.01;
                 cube.rotation.y += 0.01;
                 renderer.render(scene, camera);
+
             }
             animate();
+            
+            // Load the  model
+            loader.load('./Flamingo.glb', (gltf) => {
+                        const model2 = gltf.scene;
+                        scene.add(model2);
+                        // Access animations
+                        const mixer2 = new THREE.AnimationMixer(model2);
+                        const action2 = mixer2.clipAction(gltf.animations[0]); // Assuming the first animation
+                        action2.play(); // Start animation
+                        animate();
+            });
+            
         });
