@@ -29,14 +29,22 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // Load the  model
             const loader = new THREE.GLTFLoader();
-            loader.load('./Flamingo.glb', (gltf) => {
-                        const model = gltf.scene;
-                        scene.add(model);
-                        // Access animations
-                        const mixer2 = new THREE.AnimationMixer(model);
-                        const action2 = mixer2.clipAction(gltf.animations[0]); // Assuming the first animation
-                        action2.play(); // Start animation
-                        animate();
+            const model = gltf.scene;
+            scene.add(model);
+            
+            // You may need to adjust the position, rotation, and scale of the loaded model as necessary
+            model.position.set(0, 0, 0); // Example position
+            model.rotation.set(0, Math.PI / 2, 0); // Example rotation
+            model.scale.set(0.1, 0.1, 0.1); // Example scale
+            
+            // Optionally, you can access animations if they exist in the GLTF file
+            const mixer = new THREE.AnimationMixer(model);
+            gltf.animations.forEach((clip) => {
+                        mixer.clipAction(clip).play();
+            });
+            
+            // Start the animation loop
+            animate();
             });
             
         });
